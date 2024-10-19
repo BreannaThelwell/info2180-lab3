@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Handle mouse entering a square (hover effect)
     function handleMouseEnter(square, index) {
-        if (gameState[index] === "") { // Only apply hover effect to empty squares
+        if (gameState[index] === "" && gameActive) { // Only apply hover effect to empty squares
             square.classList.add("hover");
         }
     }
@@ -88,7 +88,8 @@ document.addEventListener("DOMContentLoaded", () => {
       currentPlayer = "X";
       status.textContent = "Move your mouse over a square and click to play an X or an O.";
       status.classList.remove("you-won");
-  
+
+      // Clear board by removing text and classes from square
       squares.forEach(square => {
         square.textContent = "";
         square.classList.remove("X", "O");
