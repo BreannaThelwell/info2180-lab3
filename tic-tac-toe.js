@@ -22,24 +22,30 @@ document.addEventListener("DOMContentLoaded", () => {
   
       // Add click event to handle marking X or O
       square.addEventListener("click", () => handleSquareClick(square, index));
-    });
       
-      /*Hover effect when mouse enters and leaves
-      square.addEventListener("mouseenter", () => {
-        if (!square.textContent && gameActive) {
-          square.classList.add("hover");
-        }
-      });
+      //Hover effect when mouse enters and leaves
+      square.addEventListener("mouseenter", () => handleMouseEnter (square, index));
   
-      square.addEventListener("mouseleave", () => {
+      square.addEventListener("mouseleave", () => handleMouseLeave(square));
+      
+    }); 
+
+    // Handle mouse entering a square (hover effect)
+    function handleMouseEnter(square, index) {
+        if (gameState[index] === "") { // Only apply hover effect to empty squares
+            square.classList.add("hover");
+        }
+    }
+
+    // Handle mouse leaving a square (remove hover effect)
+    function handleMouseLeave(square) {
         square.classList.remove("hover");
-      });
-    }); */
+    }
   
     // Handle click on a square
-    function handleSquareClick(index) {
+    function handleSquareClick(square, index) {
     // Check if the square is already clicked or game over
-      if (gameState[index] !== "" || !gameActive) {
+      if (gameState[index] !== "") {
         return; // Ignore if marked
       }
   
